@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
+from datetime import date
 from .models import Todo
 from django.core.paginator import Paginator
 from django.utils import timezone
@@ -57,7 +58,7 @@ def create_todo(request):
         if bool(important):
             kwargs['important'] = True
         Todo.objects.create(**kwargs)
-        return redirect('current')
+        return redirect('todos')
 
 
 def edit_todo(request, pk):
@@ -84,7 +85,7 @@ def edit_todo(request, pk):
         else:
             todo.important = False
         todo.save()
-        return redirect('current')
+        return redirect('todos')
 
 
 def complete_todo_api(request):
@@ -171,7 +172,16 @@ def delete_todo_api(request):
 
 
 def user_stat(request):
-    pass
+    context = {}
+    user = request.user
+    context['username'] = user.username
+    context['active_todos'] = Todo.objects.filter(user=user, complete=False, trashed=False).count()
+    print(context['active_todos'])
+    context['total_todos'] = Todo.objects.filter(user=user).count()
+    context['trashed_todos'] = Todo.objects.filter(user=user, trashed=True).count()
+    today = date.today()
+    context['today_added_todos'] = Todo.objects.filter(user=user, added__day=today.day).count()
+    return render(request, 'todo/stat.html', context=context)
 
 
 def logout_user(request):
