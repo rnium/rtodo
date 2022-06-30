@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout
+from django.contrib.auth import login, logout, authenticate
 from datetime import date
 from .models import Todo
 from django.core.paginator import Paginator
@@ -10,7 +10,10 @@ import json
 
 
 def home(request):
-    pass
+    if request.user.is_authenticated:
+        return redirect('todos')
+    else:
+        return render(request, 'todo/home.html')
 
 
 def current_todo(request):
@@ -194,9 +197,19 @@ def logout_user(request):
 
 
 def user_login(request):
-    pass
+    if request.method == 'GET':
+        return render(request, 'todo/login.html')
+    else:
+        data = request.POST
+        user = authenticate(request, username=data['username'], password=data['password'])
+        if user is not None:
+            login(request, user)
+            return redirect('todos')
+        else:
+            return render(request, 'todo/login.html', context={'error':'invalid credentials'})
 
 
 def signup_user(request):
-    pass
+    if request.method == 'GET':
+        return render(request, 'todo/signup.html')
 

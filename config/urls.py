@@ -15,7 +15,7 @@ urlpatterns = [
     path('create/', views.create_todo, name="create"),
     path('edit/<int:pk>', views.edit_todo, name="edit"),
     path('stats/', views.user_stat, name="stats"),
-    path('login/', views.user_stat, name="login"),
+    path('login/', views.user_login, name="login"),
     path('signup/', views.signup_user, name="signup"),
     path('logout/', views.logout_user, name="logout"),
 ]
