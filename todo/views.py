@@ -180,7 +180,11 @@ def user_stat(request):
     context['total_todos'] = Todo.objects.filter(user=user).count()
     context['trashed_todos'] = Todo.objects.filter(user=user, trashed=True).count()
     today = date.today()
-    context['today_added_todos'] = Todo.objects.filter(user=user, added__day=today.day).count()
+    context['today_added_todos'] = Todo.objects.filter(user=user, added__date=today).count()
+    context['today_completed_todos'] = Todo.objects.filter(user=user, complete=True, completed__date=today).count()
+    last_completed_todo = Todo.objects.latest('completed')
+    context['last_completed'] = last_completed_todo.title
+    context['last_completed_time'] = last_completed_todo.completed
     return render(request, 'todo/stat.html', context=context)
 
 

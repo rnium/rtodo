@@ -86,7 +86,7 @@
           </div>
           <div class="bottom">
             <div class="added">
-              <i class="bi bi-clock me-1"></i><span>{{ todo.added }}</span>
+              <i class="bi bi-clock me-1"></i><span>{{ todo.added|date:"h:i:sA, j M o" }}</span>
             </div>
             <div class="action">
               <button data-id="{{ todo.id }}" class="action-btn restore"><i class="bi bi-arrow-counterclockwise"></i></button>

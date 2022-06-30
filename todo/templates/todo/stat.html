@@ -62,9 +62,9 @@
             <li><span class="label">Total todo:</span><span class="value">{{ total_todos }}</span></li>
             <li><span class="label">Trashed todo:</span><span class="value">{{ trashed_todos }}</span></li>
             <li><span class="label">Today added:</span><span class="value">{{ today_added_todos }}</span></li>
-            <li><span class="label">Today completed:</span><span class="value">3</span></li>
-            <li><span class="label">Last completed:</span><span class="string_value">Lorem ipsum dolor sit amet</span></li>
-            <li><span class="label">Last completion time:</span><span class="value">3:12pm, 27 June 2022</span></li>
+            <li><span class="label">Today completed:</span><span class="value">{{ today_completed_todos }}</span></li>
+            <li><span class="label">Last completed:</span><span class="string_value">{{ last_completed }}</span></li>
+            <li><span class="label">Last completion time:</span><span class="value">{{ last_completed_time|date:"h:i:sA, j M o" }}</span></li>
           </ul>
         </div>
       </div>
