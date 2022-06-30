@@ -63,10 +63,12 @@
     justify-items: center !important;
     margin-bottom: 0.5em;
     margin-right: 0 !important;
-    margin: 1em 0 0.5em;
+    margin: 1em 0;
+  }
+  body header .navbar .account .profile {
+    margin-bottom: 0.5em !important;
   }
   body header .navbar .account a {
-    width: 150px;
     margin: 0.2em;
     margin-right: 0 !important;
     display: inline-block;
@@ -148,7 +150,7 @@
   }
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 420px) {
   body .main-container .todo-container .todo .bottom .added, body .main-container .todo-container .todo .bottom .completed {
     font-size: 0.8em !important;
     margin-right: 1em !important;
@@ -158,6 +160,9 @@
   }
   body .main-container .todo-container .todo .bottom .action .action-btn i {
     font-size: 0.9em;
+  }
+  body .main-container .stats-container {
+    font-size: 0.8rem;
   }
 }
 
@@ -169,21 +174,6 @@
 
 body header .navbar .navbar-brand img {
   width: 50px;
-}
-
-body header .navbar .account .profile {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  justify-items: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  color: #727272;
 }
 
 body header .navbar .account .profile i {
@@ -476,6 +466,8 @@ body .main-container .stats-container .user img {
 body .main-container .stats-container .user .username {
   margin-top: 0.5em;
   font-weight: 500;
+  font-family: 'Anek Latin', sans-serif;
+  font-size: 1.2rem;
 }
 
 body .main-container .stats-container .stat ul {
@@ -490,6 +482,7 @@ body .main-container .stats-container .stat ul li .label {
 body .main-container .stats-container .stat ul li .value {
   font-weight: 600;
   display: inline-block;
+  font-family: 'Anek Latin', sans-serif;
 }
 
 body .main-container .stats-container .stat ul li .string_value {

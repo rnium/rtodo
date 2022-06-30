@@ -178,6 +178,7 @@ def user_stat(request):
     context['active_todos'] = Todo.objects.filter(user=user, complete=False, trashed=False).count()
     print(context['active_todos'])
     context['total_todos'] = Todo.objects.filter(user=user).count()
+    context['completed_todos'] = Todo.objects.filter(user=user, complete=True).count()
     context['trashed_todos'] = Todo.objects.filter(user=user, trashed=True).count()
     today = date.today()
     context['today_added_todos'] = Todo.objects.filter(user=user, added__date=today).count()
