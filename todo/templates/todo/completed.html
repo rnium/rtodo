@@ -25,13 +25,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{% url 'todos' %}">Home</a>
+                  <a class="nav-link" aria-current="page" href="{% url 'todos' %}">Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'create' %}">Create</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{% url 'completed' %}">Completed</a>
+                  <a class="nav-link active" href="{% url 'completed' %}">Completed</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'trashed' %}">Trash</a>
@@ -70,11 +70,11 @@
             {% endif %}
           </div>
           <div class="bottom">
-            <div class="added">
-              <i class="bi bi-clock me-1"></i><span>{{ todo.added|date:"h:i:sA, j M o" }}</span>
-            </div>
             <div class="completed">
               <i class="bi bi-check2-circle me-1"></i><span>{{ todo.completed|date:"h:i:sA, j M o" }}</span>
+            </div>
+            <div class="added">
+              <i class="bi bi-clock me-1"></i><span>{{ todo.added|date:"h:i:sA, j M o" }}</span>
             </div>
           </div>
         </div>

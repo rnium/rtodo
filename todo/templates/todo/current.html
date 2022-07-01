@@ -104,7 +104,7 @@
         <img src="{% static 'images/meditating.svg' %}" alt="">
         <div class="info">
           <p>No Todos Due for Now</p>
-          <a href="" class="link-btn">Create new</a>
+          <a href="{% url 'create' %}" class="link-btn">Create new</a>
         </div>
       </div>
       {% else %}
@@ -112,7 +112,7 @@
         <img src="{% static 'images/meditating.svg' %}" alt="">
         <div class="info">
           <p>No Todos Due for Now</p>
-          <a href="" class="link-btn">Create new</a>
+          <a href="{% url 'create' %}" class="link-btn">Create new</a>
         </div>
       </div>
       {% endif %}
