@@ -21,3 +21,19 @@ class Todo(models.Model):
         else:
             return "todo"
 
+
+class Feedback(models.Model):
+    name = models.CharField(max_length=100)
+    message = models.TextField()
+
+    def __str__(self):
+        return f"message from - {self.name}"
+
+
+class IssueReport(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(blank=True, null=True)
+    message = models.TextField()
+
+    def __str__(self):
+        return f"report from - {self.name}"

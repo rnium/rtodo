@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
 from datetime import date
-from .models import Todo
+from .models import Todo, Feedback, IssueReport
 from django.core.paginator import Paginator
 from django.utils import timezone
 from .utils import get_paginator_context
@@ -19,6 +19,7 @@ def home(request):
         return render(request, 'todo/home.html')
 
 
+@login_required
 def current_todo(request):
     context = {}
     todos = Todo.objects.filter(user=request.user, complete=False, trashed=False).order_by('-added')
@@ -27,7 +28,7 @@ def current_todo(request):
     context['num_todos'] = len(todos)
     return render(request, 'todo/current.html', context=context)
 
-
+@login_required
 def completed_todo(request):
     context = {}
     todos = Todo.objects.filter(user=request.user, complete=True).order_by('-completed')
@@ -40,6 +41,7 @@ def completed_todo(request):
     return render(request, 'todo/completed.html', context=context)
 
 
+@login_required
 def trashed_todo(request):
     context = {}
     context['username'] = request.user.username
@@ -48,6 +50,7 @@ def trashed_todo(request):
     return render(request, 'todo/trashed.html', context=context)
 
 
+@login_required
 def create_todo(request):
     if request.method == "GET":
         context = {}
@@ -67,6 +70,7 @@ def create_todo(request):
         return redirect('todos')
 
 
+@login_required
 def edit_todo(request, pk):
     try:
         todo = Todo.objects.get(pk=pk)
@@ -176,7 +180,7 @@ def delete_todo_api(request):
         todo.delete()
         return JsonResponse('deleted', safe=False) 
 
-
+@login_required
 def user_stat(request):
     context = {}
     user = request.user
@@ -244,3 +248,46 @@ def signup_user(request):
                                                                 'password1': password1,
                                                                 'password2': password2})
 
+
+def unavailable(request):
+    context = dict()
+    context['logged_in'] = request.user.is_authenticated
+    if request.user.is_authenticated:
+        context['username'] = request.user.username
+    return render(request, 'todo/unavailable.html', context=context)
+
+
+def feedback(request):
+    context = {}
+    context['logged_in'] = request.user.is_authenticated
+    if request.user.is_authenticated:
+        context['username'] = request.user.username
+    if request.method == "GET":
+        return render(request, 'todo/feedback.html', context=context)
+    else:
+        name = request.POST.get('name', 'BlankName')
+        feedback = request.POST.get('feedback', 'Blank message')
+        message = Feedback.objects.create(name=name, message=feedback)
+        message.save()
+        context['response'] = "Feedback Receieved"
+        return render(request, 'todo/feedback_response.html', context=context)
+
+
+def report_issue(request):
+    context = {}
+    context['logged_in'] = request.user.is_authenticated
+    if request.user.is_authenticated:
+        context['username'] = request.user.username
+    if request.method == "GET":
+        return render(request, 'todo/issuereport.html', context=context)
+    else:
+        report_kwargs = {}
+        report_kwargs['name'] = request.POST.get('name', 'BlankName')
+        email = request.POST.get('email', False)
+        if email:
+            report_kwargs['email'] = email
+        report_kwargs['message'] = request.POST.get('issue_text', 'Blank message')
+        issue = IssueReport.objects.create(**report_kwargs)
+        issue.save()
+        context['response'] = "Issue Submitted"
+        return render(request, 'todo/feedback_response.html', context=context)

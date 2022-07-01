@@ -75,7 +75,8 @@
     text-align: center;
   }
   body .main-container {
-    margin: 1.5em 0;
+    min-height: 1em !important;
+    margin: 1.5em 0 3em !important;
   }
   body .main-container .todo-container {
     width: 95%;
@@ -87,9 +88,10 @@
     margin-right: 0.2em !important;
   }
   body .main-container .no-todos img {
-    width: 60% !important;
+    width: 90% !important;
   }
   body .main-container .no-todos .info p {
+    margin-top: 1em !important;
     font-size: 1.5rem !important;
   }
   body .main-container .stats-container {
@@ -113,6 +115,23 @@
   }
   body .main-container .authentication input[type='text'], body .main-container .authentication input[type='password'] {
     width: 90% !important;
+  }
+  body .message-main {
+    min-height: 1em !important;
+  }
+  body .message-main .message {
+    width: 90%;
+  }
+  body .message-main .message .wrapper {
+    margin: 4em 0 3em;
+  }
+  body .message-main .message .wrapper img {
+    width: 100% !important;
+  }
+  body .message-main .message .wrapper p {
+    font-size: 1.5rem !important;
+    text-align: center;
+    margin-top: 1.7em !important;
   }
   body footer .upper {
     -webkit-box-orient: vertical !important;
@@ -144,6 +163,9 @@
     -webkit-box-direction: normal !important;
         -ms-flex-direction: column !important;
             flex-direction: column !important;
+  }
+  body .main-container .no-todos img {
+    width: 100% !important;
   }
   body .main-container .form-container {
     width: 90% !important;
@@ -612,6 +634,33 @@ body .main-container .authentication .wrapper .error i {
   color: red;
 }
 
+body .main-container .error404 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #727272;
+  width: 100%;
+}
+
+body .main-container .error404 .status-code {
+  font-size: 10rem;
+  text-shadow: 0 0 5px #e4e4e4;
+  color: #38b6a1;
+}
+
+body .main-container .error404 .info {
+  font-size: 2rem;
+  color: #38b6a1;
+}
+
 body .intro {
   min-height: calc(100vh - 220px);
   width: 100%;
@@ -669,6 +718,85 @@ body .intro .info .get-started a:hover {
 
 body .intro .banner img {
   width: 550px;
+}
+
+body .message-main {
+  min-height: calc(100vh - 220px);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(white), to(aliceblue)) !important;
+  background-image: linear-gradient(to bottom, white, aliceblue) !important;
+  margin: 0 !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #727272;
+}
+
+body .message-main .message .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #727272;
+}
+
+body .message-main .message .wrapper img {
+  width: 550px;
+}
+
+body .message-main .message .wrapper p {
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 1em;
+}
+
+body .message-main .feedback {
+  width: 100%;
+  padding: 0 10%;
+  margin-top: 1em;
+}
+
+body .message-main .feedback textarea {
+  height: 30vh !important;
+}
+
+body .message-main .feedback .textinput {
+  margin-bottom: 1em;
+}
+
+body .message-main .feedback .title {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1em;
+}
+
+body .message-main .feedback form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #727272;
 }
 
 body footer .upper {
