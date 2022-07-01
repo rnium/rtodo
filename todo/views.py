@@ -295,3 +295,10 @@ def report_issue(request):
         issue.save()
         context['response'] = "Issue Submitted"
         return render(request, 'todo/feedback_response.html', context=context)
+
+
+def handler404(request, *args, **argv):
+    username = request.user.username
+    response =  render(request, 'todo/error404.html', context={'username':username})
+    response.status_code = 404
+    return response

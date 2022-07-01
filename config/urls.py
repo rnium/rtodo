@@ -24,3 +24,5 @@ urlpatterns = [
     path('rules/', views.unavailable, name="rules"),
     path('usermanual/', views.unavailable, name="usermanual"),
 ]
+
+handler404 = 'todo.views.handler404'

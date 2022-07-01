@@ -119,9 +119,6 @@
   body .message-main {
     min-height: 1em !important;
   }
-  body .message-main .message {
-    width: 90%;
-  }
   body .message-main .message .wrapper {
     margin: 4em 0 3em;
   }
@@ -129,9 +126,9 @@
     width: 100% !important;
   }
   body .message-main .message .wrapper p {
-    font-size: 1.5rem !important;
+    font-size: 1.3rem !important;
     text-align: center;
-    margin-top: 1.7em !important;
+    margin-top: 1em !important;
   }
   body footer .upper {
     -webkit-box-orient: vertical !important;
@@ -721,7 +718,7 @@ body .intro .banner img {
 }
 
 body .message-main {
-  min-height: calc(100vh - 220px);
+  min-height: calc(100vh - 225px);
   background-image: -webkit-gradient(linear, left top, left bottom, from(white), to(aliceblue)) !important;
   background-image: linear-gradient(to bottom, white, aliceblue) !important;
   margin: 0 !important;
@@ -755,7 +752,7 @@ body .message-main .message .wrapper {
 }
 
 body .message-main .message .wrapper img {
-  width: 550px;
+  width: 530px;
 }
 
 body .message-main .message .wrapper p {

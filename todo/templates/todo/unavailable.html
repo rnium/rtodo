@@ -14,41 +14,41 @@
   <header>
     {% if request.user.is_authenticated %}
     <nav class="navbar navbar-expand-md">
-        <div class="container-fluid">
-          <a class="navbar-brand d-block ms-4 me-4" href="#">
-              <img src="{% static 'images/checked.png' %}" alt="">
-              <span class="site-title ms-1"> <span class="r">r</span>Todo</span>
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Create</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Completed</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Trash</a>
-              </li>
-              
-            </ul>
-            <div class="d-flex account me-3">
-                <div class="profile me-3">
-                    <i class="bi bi-person-fill me-1"></i>
-                    <span>{{ username }}</span>
-                </div>
-                <form action="">
-                    <input type="submit" value="Logout" class="btn-1">
-                </form>
-            </div>
+      <div class="container-fluid">
+        <a class="navbar-brand d-block ms-4 me-4" href="{% url 'home' %}">
+            <img src="{% static 'images/checked.png' %}" alt="">
+            <span class="site-title ms-1"> <span class="r">r</span>Todo</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'todos' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'create' %}">Create</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'completed' %}">Completed</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'trashed' %}">Trash</a>
+            </li>
+            
+          </ul>
+          <div class="d-flex account me-3">
+              <div class="profile me-3">
+                  <i class="bi bi-person-fill me-1"></i>
+                  <a href="{% url 'stats' %}">{{ username }}</a>
+              </div>
+              <form action="{% url 'logout' %}">
+                  <input type="submit" value="Logout" class="btn-1">
+              </form>
           </div>
         </div>
+      </div>
     </nav>
     {% else %}
     <nav class="navbar navbar-expand-md">
