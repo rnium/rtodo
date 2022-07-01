@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.models import User
 from datetime import date
 from .models import Todo
 from django.core.paginator import Paginator
 from django.utils import timezone
 from .utils import get_paginator_context
 from django.http import HttpResponse, JsonResponse
+from django.db import IntegrityError
+from django.contrib.auth.decorators import login_required
 import json
 
 
@@ -186,14 +189,19 @@ def user_stat(request):
     today = date.today()
     context['today_added_todos'] = Todo.objects.filter(user=user, added__date=today).count()
     context['today_completed_todos'] = Todo.objects.filter(user=user, complete=True, completed__date=today).count()
-    last_completed_todo = Todo.objects.latest('completed')
-    context['last_completed'] = last_completed_todo.title
-    context['last_completed_time'] = last_completed_todo.completed
+    try:
+        last_completed_todo = Todo.objects.filter(user=user, complete=True).latest('completed')
+        context['last_completed'] = last_completed_todo.title
+        context['last_completed_time'] = last_completed_todo.completed
+    except Todo.DoesNotExist:
+        context['last_completed'] = "N/A"
     return render(request, 'todo/stat.html', context=context)
 
 
+@login_required
 def logout_user(request):
-    pass
+   logout(request)
+   return redirect('home') 
 
 
 def user_login(request):
@@ -212,4 +220,27 @@ def user_login(request):
 def signup_user(request):
     if request.method == 'GET':
         return render(request, 'todo/signup.html')
+    elif request.method == "POST":
+        username = request.POST.get('username')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+        if password1 == password2:
+            try:
+                user = User.objects.create(username=username)
+            except IntegrityError:
+                return render(request, 'todo/signup.html', context={'error': 'username not available', 
+                                                                    'prev_values': True, 
+                                                                    'username': username,
+                                                                    'password1': password1,
+                                                                    'password2': password2})
+            user.set_password(password1)
+            user.save()
+            login(request, user)
+            return redirect('todos')
+        else:
+            return render(request, 'todo/signup.html', context={'error': 'passwords mismatch', 
+                                                                'prev_values': True, 
+                                                                'username': username,
+                                                                'password1': password1,
+                                                                'password2': password2})
 

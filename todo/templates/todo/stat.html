@@ -65,7 +65,9 @@
             <li><span class="label">Today added:</span><span class="value">{{ today_added_todos }}</span></li>
             <li><span class="label">Today completed:</span><span class="value">{{ today_completed_todos }}</span></li>
             <li><span class="label">Last completed:</span><span class="string_value">{{ last_completed }}</span></li>
+            {% if last_completed_time %}
             <li><span class="label">Last completion time:</span><span class="value">{{ last_completed_time|date:"h:i:sA, j M o" }}</span></li>
+            {% endif %}
           </ul>
         </div>
       </div>
