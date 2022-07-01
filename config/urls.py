@@ -21,4 +21,6 @@ urlpatterns = [
     path('sourcecode/', views.unavailable, name="sourcecode"),
     path('feedback/', views.feedback, name="feedback"),
     path('report/', views.report_issue, name="report"),
+    path('rules/', views.unavailable, name="rules"),
+    path('usermanual/', views.unavailable, name="usermanual"),
 ]

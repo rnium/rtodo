@@ -210,6 +210,8 @@ def logout_user(request):
 
 def user_login(request):
     if request.method == 'GET':
+        if request.user.is_authenticated:
+            return redirect('todos')
         return render(request, 'todo/login.html')
     else:
         data = request.POST
@@ -223,6 +225,8 @@ def user_login(request):
 
 def signup_user(request):
     if request.method == 'GET':
+        if request.user.is_authenticated:
+            return redirect('todos')
         return render(request, 'todo/signup.html')
     elif request.method == "POST":
         username = request.POST.get('username')
