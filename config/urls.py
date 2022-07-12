@@ -1,10 +1,11 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from todo import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name="home"),
+    path('api/', include('todo.api.urls')),
     path('todos/', views.current_todo, name="todos"),
     path('completed/', views.completed_todo, name="completed"),
     path('complete_todo/', views.complete_todo_api, name="complete_todo"),
